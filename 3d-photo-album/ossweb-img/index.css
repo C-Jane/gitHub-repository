@@ -1,0 +1,145 @@
+html {
+  font-size: calc(100vw * 10 / 75); }
+
+/* ---------- init ---------- */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  margin: 0;
+  padding: 0; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  word-wrap: break-word; }
+
+body, button, input, select, textarea {
+  font-family: Microsoft YaHei, STXihei, STHeiti, Verdana, Arial, Helvetica, sans-serif;
+  font-size: 0.24rem;
+  color: #000; }
+
+th {
+  text-align: inherit; }
+
+ol, ul {
+  list-style: none; }
+
+fieldset, img {
+  border: 0;
+  vertical-align: middle; }
+
+caption, th {
+  text-align: left; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: 500; }
+
+sup {
+  vertical-align: text-top; }
+
+sub {
+  vertical-align: text-bottom; }
+
+ins, a {
+  color: #000;
+  text-decoration: none; }
+
+a, img {
+  -webkit-touch-callout: none; }
+
+table {
+  border-collapse: collapse; }
+
+i {
+  font-style: normal; }
+
+img {
+  width: 100%;
+  display: block; }
+
+a {
+  color: inherit; }
+
+input, select, textarea {
+  -webkit-appearance: none; }
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+.lCenter {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  position: absolute; }
+
+.vCenter {
+  position: absolute; }
+
+.allCenter {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  position: absolute; }
+
+.textcenter {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+.clear:after {
+  content: ' ';
+  font-size: 0;
+  clear: both;
+  height: 0px;
+  display: block; }
+
+.tCenter {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0; }
+
+@media (min-width: 750px) {
+  html {
+    font-size: 100px; } }
+@media (max-width: 320px) {
+  html {
+    font-size: 42.66px; } }
+body, html {
+  background: #000; }
+
+#numb {
+  font-size: .4rem;
+  text-align: center;
+  line-height: 1.4;
+  color: #000; }
+
+.second {
+  width: 7.5rem;
+  height: 7rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0.5rem 0.2rem 0;
+  display: -webkit-flex;
+  perspective: 500px;
+  overflow: hidden; }
+
+#album {
+  transform-style: preserve-3d;
+  height: 6rem; }
+
+.second ul {
+  width: 6rem;
+  height: 100%;
+  margin-left: 0.2rem;
+  position: relative; }
+
+.second li {
+  position: absolute;
+  width: 2rem;
+  top: 0;
+  left: 0;
+  transform: translateZ(1rem); }
+
+/*# sourceMappingURL=index-1.css.map */

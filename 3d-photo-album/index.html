@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="robots" content="all">
+    <meta name="author" content="Tencent-CP">
+    <meta name="Copyright" content="Tencent">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <link rel="stylesheet" href="ossweb-img/index.css">
+    <title>h5</title>
+</head>
+<body>
+<div class="second">
+    <div id="album">
+        <ul>
+            <li><img src="ossweb-img/bg_brother_1.png" alt=""/></li>
+            <li><img src="ossweb-img/bg_brother_2.png" alt=""/></li>
+            <li><img src="ossweb-img/bg_brother_3.png" alt=""/></li>
+            <li><img src="ossweb-img/bg_brother_4.png" alt=""/></li>
+            <li><img src="ossweb-img/bg_brother_5.png" alt=""/></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script src="js/jquery.min.js"></script>
+<script>
+    var albumObj = {
+        album : document.getElementById('album'),
+        aImg : album.querySelectorAll('img'),
+        lastX: 0, // 前一次的坐标X
+        lastY: 0,
+        nowX: 0, // 当前的坐标X
+        nowY: 0,
+        desX: 0,
+        desY: 0,
+        activeindex: 0,
+        style: [
+            {
+                left: '2.45rem',
+                top: '2.4rem',
+                'z-index': '3',
+                '-webkit-transform': 'translateZ(0rem)',
+                'transform': 'translateZ(0rem)',
+                opacity: '1',
+                filter: 'brightness(100%)'
+            },
+            {
+                width: '1.8rem',
+                left: '4.6rem',
+                top: '2rem',
+                'z-index': '2',
+                '-webkit-transform': 'rotateY(-25deg) translateZ(-1rem)',
+                'transform': 'rotateY(-25deg) translateZ(-1rem)',
+                opacity: '1',
+                filter: 'brightness(50%)'
+            },
+            {
+                width: '1.6rem',
+                left: '4rem',
+                top: '0rem',
+                'z-index': '1',
+                '-webkit-transform': 'translateZ(-2rem)',
+                'transform': 'translateZ(-2rem)',
+                opacity: '1',
+                filter: 'brightness(50%)'
+            },
+            {
+                width: '1.6rem',
+                left: '1.1rem',
+                top: '0rem',
+                'z-index': '1',
+                '-webkit-transform': 'translateZ(-2rem)',
+                'transform': 'translateZ(-2rem)',
+                opacity: '1',
+                filter: 'brightness(50%)'
+            },
+            {
+                width: '1.8rem',
+                left: '0.3rem',
+                top: '2rem',
+                'z-index': '2',
+                '-webkit-transform': 'rotateY(25deg) translateZ(-1rem)',
+                'transform': 'rotateY(25deg) translateZ(-1rem)',
+                opacity: '1',
+                filter: 'brightness(50%)'
+            }
+        ],
+        stylename: ['on', '', '', '', ''],
+        ac: 5,
+        inti: function () {
+            //初始化
+            var _that = this;
+            $('#album li').each(function (index) {
+                $(this).css(_that.style[index]);
+            });
+            _that.albumTouch();
+        },
+        albumTouch:function () {
+            var _that = this;
+            _that.album.ontouchstart = function (e) {
+                var e = e || event;
+                _that.lastX = e.changedTouches[0].clientX;
+                _that.lastY = e.changedTouches[0].clientY;
+                this.ontouchmove = function (e) {
+                    var e = e || event;
+                    _that.nowX = e.changedTouches[0].clientX;
+                    _that.nowY = e.changedTouches[0].clientY;
+                    _that.desX = _that.nowX - _that.lastX;
+                    _that.desY = _that.nowY - _that.lastY;
+                }
+                _that.album.ontouchend = function () {
+                    this.ontouchmove = this.ontouchend = null;
+                    //
+                    if (_that.desX < -4) {
+                        _that.activeindex -= 1;
+                    }
+                    if (_that.desX > 4) {
+                        _that.activeindex += 1;
+                    }
+                    if (_that.activeindex > _that.aImg.length - 1) {
+                        _that.activeindex = 0;
+                    }
+                    if (_that.activeindex < 0) {
+                        _that.activeindex = _that.aImg.length - 1;
+                    }
+                    $('#album li').each(function (index) {
+                        $(this).css('z-index', _that.style[(index + _that.activeindex + 400) % _that.ac]['z-index']);
+                        $(this).css('filter', _that.style[(index + _that.activeindex + 400) % _that.ac]['filter']);
+                        $(this).css('transform', _that.style[(index + _that.activeindex + 400) % _that.ac]['transform']);
+                        $(this).animate(_that.style[(index + _that.activeindex + 400) % _that.ac], 200);
+                        $(this).addClass(_that.stylename[(index + _that.activeindex + 400) % _that.ac]);
+                    });
+                }
+                return false;
+            }
+        }
+    }
+    albumObj.inti();
+</script>
